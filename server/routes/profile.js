@@ -27,24 +27,12 @@ app.post('/perfil', async(req, res) => {
 });
 
 
-app.put('/perfil/:email', async(req, res) => {
+app.put('/perfil/:id', async(req, res) => {
     res.setHeader('content-type', 'application/json');
-    let email = req.params.email;
+    let id = req.params.id;
     let body = req.body;
 
-    // Profile.findByIdAndUpdate(id, {
-    //     nombre: body.nombre,
-    //     apellido: body.apellido
-    // }, (err, profileDB) => {
-    //     if (err) {
-    //         return res.status(400).json({
-    //             status: false,
-    //             err
-    //         });
-    //     }
-    //     res.send(profileDB);
-    // });
-    await Profile.findOneAndUpdate({ email }, {
+    Profile.findByIdAndUpdate(id, {
         nombre: body.nombre,
         apellido: body.apellido
     }, {
@@ -57,9 +45,23 @@ app.put('/perfil/:email', async(req, res) => {
                 err
             });
         }
-        res.json(profileDB);
+        res.send(profileDB);
     });
-
+    // await Profile.findOneAndUpdate({ email }, {
+    //     nombre: body.nombre,
+    //     apellido: body.apellido
+    // }, {
+    //     useFindAndModify: false,
+    //     new: true
+    // }, (err, profileDB) => {
+    //     if (err) {
+    //         return res.status(400).json({
+    //             status: false,
+    //             err
+    //         });
+    //     }
+    //     res.json(profileDB);
+    // });
 });
 
 app.get('/perfil/:email', (req, res) => {
