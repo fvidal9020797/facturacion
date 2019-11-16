@@ -53,7 +53,8 @@ app.get('/autor/:id', (req, res) => {
 
 app.put('/autor/:id', (req, res) => {
     let id = req.params.id;
-    Autor.findByIdAndUpdate({ _id: id }, {
+    let body = req.body;
+    Autor.findByIdAndUpdate({ _id: id }, body, {
         new: true,
         runValidators: false,
         useFindAndModify: false
