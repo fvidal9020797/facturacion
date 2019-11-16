@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
     })
 });
 
-// mongoose.connect('mongodb://localhost:27017/profile', { useNewUrlParser: true, useCreateIndex: true });
+mongoose.connect('mongodb://localhost:27017/profile', { useNewUrlParser: true, useCreateIndex: true });
 
 app.listen(process.env.PORT, () => {
     console.log('Escuchando en el puerto', process.env.PORT);
