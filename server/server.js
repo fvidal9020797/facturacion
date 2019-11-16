@@ -15,7 +15,10 @@ app.get('/', (req, res) => {
     })
 });
 
-mongoose.connect('mongodb://localhost:27017/profile', { useNewUrlParser: true, useCreateIndex: true });
+mongoose.connect(process.env.URL_DB, { useNewUrlParser: true, useCreateIndex: true }); //fvidal  Iogear3com.
+
+// mongodb+srv://fvidal:Iogear3com.@cluster0-wlkmk.mongodb.net/test?retryWrites=true&w=majority
+
 
 app.listen(process.env.PORT, () => {
     console.log('Escuchando en el puerto', process.env.PORT);
