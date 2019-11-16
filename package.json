@@ -6,7 +6,8 @@
     "engines": {
         "node": "10.12.0"
     },
-    "keywords": ["node",
+    "keywords": [
+        "node",
         "heroku",
         "express"
     ],
@@ -17,10 +18,10 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "bcrypt": "*",
+        "bcrypt": "^3.0.2",
         "body-parser": "^1.19.0",
         "cors": "^2.8.5",
-        "express": "*",
+        "express": "^4.17.1",
         "form-data": "^3.0.0",
         "jsonwebtoken": "^8.5.1",
         "mongoose": "^5.6.7",

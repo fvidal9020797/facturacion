@@ -13,11 +13,6 @@ let profile = new Schema({
     apellido: {
         type: String,
         required: [true, 'se necesita el apellido']
-    },
-    token: {
-        type: String,
-        required: true,
-        unique: true
     }
 }, {
     timestamps: true,

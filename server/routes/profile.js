@@ -6,14 +6,12 @@ let cors = require('cors');
 app.use(cors());
 app.post('/perfil', async(req, res) => {
     res.setHeader('content-type', 'application/json');
+    let headers = req.headers;
     let body = req.body;
-    let reqqq = await verificarTokenRemote('123');
-    console.log(reqqq);
     let profile = new Profile({
-        email: body.email,
+        email: headers.email,
         nombre: body.nombre,
-        apellido: body.apellido,
-        token: '1234'
+        apellido: body.apellido
     });
     profile.save((err, profileDB) => {
         if (err) {
@@ -56,7 +54,6 @@ app.get('/perfil/:email', (req, res) => {
                 err
             });
         }
-
         res.json(profileDB);
     });
 });
@@ -65,17 +62,8 @@ app.delete('/perfil', (req, res) => {
     return res.json({
         status: 'ok'
     });
-    // let _token = req.params._token;
-    // Profile.findOne({ token: _token }, (err, profileDB) => {
-    //     if (err) {
-    //         return res.status(400).json({
-    //             status: false,
-    //             err
-    //         });
-    //     }
-    //     res.json(profileDB);
-    // });
 });
+
 app.post('/login', async(req, res) => {
     let body = req.body;
     let obj = JSON.stringify(body);
