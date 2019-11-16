@@ -79,8 +79,6 @@ app.delete('/perfil', (req, res) => {
 app.post('/login', async(req, res) => {
     let body = req.body;
     let obj = JSON.stringify(body);
-
-    // console.log(JSON.parse(obj)['sign_in[email]']);
     let reqqq = await verificarTokenRemote(JSON.parse(obj)['sign_in[email]'], JSON.parse(obj)['sign_in[password]']);
     res.send(reqqq);
 });

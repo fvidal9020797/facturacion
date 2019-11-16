@@ -1,0 +1,1 @@
+{ "name": "Book Store Web Application", "description": "", "repository": "https://git.heroku.com/gentle-reaches-65447.git", "logo": "", "Keywords": ["node", "express", "static"], "image": "heroku/nodejs" }
