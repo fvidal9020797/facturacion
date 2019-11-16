@@ -1,8 +1,12 @@
 {
     "name": "app",
     "version": "1.0.0",
-    "description": "",
+    "description": "sssss",
     "main": "index.js",
+    "engines": {
+        "node": "12.13.0"
+    },
+
     "scripts": {
         "start": "node server/server.js",
         "test": "echo \"Error: no test specified\" && exit 1"
