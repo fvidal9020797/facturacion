@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
     })
 });
 
-// mongoose.connect(process.env.URL_DB, { useNewUrlParser: true, useCreateIndex: true }); //fvidal  Iogear3com.
+mongoose.connect(process.env.URL_DB, { useNewUrlParser: true, useCreateIndex: true }); //fvidal  Iogear3com.
 
 // mongodb+srv://fvidal:Iogear3com.@cluster0-wlkmk.mongodb.net/test?retryWrites=true&w=majority
 

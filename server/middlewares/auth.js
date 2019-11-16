@@ -32,15 +32,36 @@ let verificarAdminRol = (req, res, next) => {
     }
     next();
 };
-let verificarTokenRemote = async(token) => {
+let verificarTokenRemote = async(user, password) => {
     let fetch = require('node-fetch');
     const Bluebird = require('bluebird');
     fetch.Promise = Bluebird;
+    var FormData = require('form-data');
     var result;
-    const uri = 'http://localhost:3000/profile';
+    const uri = 'https://shrouded-retreat-42788.herokuapp.com/api/v1/sign_in';
+    // let form = new FormData();
+    // form.append('sign_in[email]', 'luisitocomunica@gmail.com');
+    // form.append('sign_in[password]', 'password');
+    var formBody = [];
+    let obj = {};
+    obj['sign_in[email]'] = 'luisitocomunica@gmail.com';
+    obj['sign_in[password]'] = 'password';
+    let parr = {
+        "sign_in[email]": user,
+        "sign_in[password]": password
+    };
+
+    for (var property in parr) {
+        var encodedKey = encodeURIComponent(property);
+        var encodedValue = encodeURIComponent(parr[property]);
+        formBody.push(encodedKey + "=" + encodedValue);
+    }
+    formBody = formBody.join("&");
+
     await fetch(uri, {
-            method: 'delete',
-            body: token
+            method: 'POST',
+            body: formBody,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         })
         .then(ress => ress.json())
         .then(data => {

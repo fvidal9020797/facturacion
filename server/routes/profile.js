@@ -7,8 +7,8 @@ app.use(cors());
 app.post('/perfil', async(req, res) => {
     res.setHeader('content-type', 'application/json');
     let body = req.body;
-    // let reqqq = await verificarTokenRemote('123');
-    // console.log(reqqq);
+    let reqqq = await verificarTokenRemote('123');
+    console.log(reqqq);
     let profile = new Profile({
         email: body.email,
         nombre: body.nombre,
@@ -29,15 +29,12 @@ app.post('/perfil', async(req, res) => {
 
 app.put('/perfil/:id', async(req, res) => {
     res.setHeader('content-type', 'application/json');
-    let id = req.params.id;
+    let email = req.params.email;
     let body = req.body;
 
     Profile.findByIdAndUpdate(id, {
         nombre: body.nombre,
         apellido: body.apellido
-    }, {
-        useFindAndModify: false,
-        new: true
     }, (err, profileDB) => {
         if (err) {
             return res.status(400).json({
@@ -47,21 +44,6 @@ app.put('/perfil/:id', async(req, res) => {
         }
         res.send(profileDB);
     });
-    // await Profile.findOneAndUpdate({ email }, {
-    //     nombre: body.nombre,
-    //     apellido: body.apellido
-    // }, {
-    //     useFindAndModify: false,
-    //     new: true
-    // }, (err, profileDB) => {
-    //     if (err) {
-    //         return res.status(400).json({
-    //             status: false,
-    //             err
-    //         });
-    //     }
-    //     res.json(profileDB);
-    // });
 });
 
 app.get('/perfil/:email', (req, res) => {
@@ -94,5 +76,12 @@ app.delete('/perfil', (req, res) => {
     //     res.json(profileDB);
     // });
 });
+app.post('/login', async(req, res) => {
+    let body = req.body;
+    let obj = JSON.stringify(body);
 
+    // console.log(JSON.parse(obj)['sign_in[email]']);
+    let reqqq = await verificarTokenRemote(JSON.parse(obj)['sign_in[email]'], JSON.parse(obj)['sign_in[password]']);
+    res.send(reqqq);
+});
 module.exports = app;
