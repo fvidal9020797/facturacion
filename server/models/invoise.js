@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 let Schema = mongoose.Schema;
-let autor = new Schema({
-    nombre: {
+let invoice = new Schema({
+    nit: {
         type: String,
     },
-    apellido: {
+    name: {
         type: String,
     },
 }, {
     timestamps: true,
-    collection: 'autor'
+    collection: 'invoice'
 });
-module.exports = mongoose.model('Autor', autor);
+module.exports = mongoose.model('invoice', invoice);
