@@ -7,6 +7,7 @@ let invoice = new Schema({
     name: {
         type: String,
     },
+    
 }, {
     timestamps: true,
     collection: 'invoice'
