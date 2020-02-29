@@ -13,7 +13,7 @@ app.get('/test',async (req, res) => {
     strategyManager.strategy=getItem;
     let ss= await strategyManager.doAction();
     res.send({
-       ss
+        "status":'ok'
     });
 });
 app.post('/test', async(req, res) => {

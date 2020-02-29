@@ -3,7 +3,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const bodyParser = require('body-parser'); // procesador de codigo
-const Req = require('../server/models/request');
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
     // parse application/json
@@ -23,3 +22,7 @@ mongoose.connect(process.env.URL_DB, { useNewUrlParser: true, useCreateIndex: tr
 app.listen(process.env.PORT, () => {
     console.log('Escuchando en el puerto', process.env.PORT);
 });
+
+module.exports = {
+    app
+}
