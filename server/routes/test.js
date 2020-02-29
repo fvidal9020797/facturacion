@@ -2,7 +2,8 @@ const express = require('express');
 const app = express();
 let {StrategyManager} = require('../prototype/strategy');
 let {GetItem}=require('../prototype/mongodb/getItem');
-let {saveItem}=require('../prototype/mongodb/save_item');
+let {SaveItem}=require('../prototype/mongodb/save_item');
+// let Item=require('../models/item');
 let cors = require('cors');
 app.use(cors());
 
@@ -17,23 +18,23 @@ app.get('/test',async (req, res) => {
 });
 app.post('/test', async(req, res) => {
     let body = req.body;
+//     let item = new Item({
+//       name: body.name
+//    });
+//    return await item.save((err, itemDB) => {
+//       console.log(itemDB);
+//       res.send(itemDB);
+//       // if (err) {
+//       //     return  err;
+//       // }
+//       // return itemDB;
+//   });
     let strategyManager=new StrategyManager();
-    let save_item=new saveItem();
-    strategyManager.strategy=save_item;
-    let ss= await strategyManager.doAction(body);
-    res.send({
-       ss
-    });
+    let saveItem=new SaveItem();
+    strategyManager.strategy=saveItem;
+    let result= await strategyManager.doAction(body);
+    console.log(result);
+    res.send(result);
 });
 
-/**
- * const strateryManager = new StrategyManager();
-const str1 = new Strategy1();
-const str2 = new Strategy2();
-strateryManager.strategy = str1;
-strateryManager.doAction();
-
-strateryManager.strategy = str2;
-strateryManager.doAction();
- */
 module.exports = app;

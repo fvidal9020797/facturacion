@@ -3,7 +3,7 @@ const Item= require('../../models/item');
 // import('../strategy');
  class GetItem extends StrategyManager{
      async doAction() {
-       return await Item.find(async(err, itemDB) => {
+       return await Item.find().then((err, itemDB) => {
             if (err) {
                 return  err;
             }

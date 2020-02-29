@@ -16,25 +16,16 @@ app.get('/test',async (req, res) => {
        ss
     });
 });
+
 app.post('/invoice', async(req, res) => {
     let body = req.body;
     let strategyManager=new StrategyManager();
     let saveInvoice=new SaveInvoice();
     strategyManager.strategy=saveInvoice;
-    let ss= await strategyManager.doAction(body);
+    let result= await strategyManager.doAction(body);
     res.send({
-       ss
+      result
     });
 });
 
-/**
- * const strateryManager = new StrategyManager();
-const str1 = new Strategy1();
-const str2 = new Strategy2();
-strateryManager.strategy = str1;
-strateryManager.doAction();
-
-strateryManager.strategy = str2;
-strateryManager.doAction();
- */
 module.exports = app;

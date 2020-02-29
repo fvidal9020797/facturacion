@@ -9,7 +9,6 @@ class StrategyManager {
     get strategy() {
         return this._strategy;
     }
-  
     async doAction(obj) {
        return await this._strategy.doAction(obj);
     }

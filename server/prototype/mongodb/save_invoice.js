@@ -9,14 +9,13 @@ const {GetItem}=require('../../prototype/mongodb/getItem');
             name: obj.name,
             nit: obj.nit 
         });
-        return await invoice.save(async(err, invoiceDB) => {
-            if (err) {
-                return err;
-            }
+        return await invoice.save().then(async(invoiceDB) => {
+            console.log(invoiceDB);
             let strategyManager=new StrategyManager();
             let getAllItem=new GetItem();
             strategyManager.strategy=getAllItem;
             let listItem= await strategyManager.doAction();
+            
             for (let index = 0; index < listItem.length; index++) {
                 const element = listItem[index];
                 if(index==0){
@@ -36,14 +35,18 @@ const {GetItem}=require('../../prototype/mongodb/getItem');
                         total_price_quantity:100*index
                     });
                 }
-              
-                detailInvoice.save(async(err, detailInvoiceDB) => {
+                
+                detailInvoice.save((err, detailInvoiceDB) => {
                     if (err) {
                         return err;
                     }
                 });
             }
-            return invoiceDB
+            // await DetailInvoice.find({ invoice :invoiceDB._id},(err, detailDb) => {
+            //     if (err) return err;
+            //     invoiceDB = { ...invoiceDB._doc, detailInvoices: detailDb };
+            // });
+            return invoiceDB;
         });
     }
 }
